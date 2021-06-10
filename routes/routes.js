@@ -5,7 +5,6 @@ var UsersController = require('../controllers/users');
 
 var router = express.Router();
 
-// Rutas de prueba
-router.get('/test-method', UsersController.test_method);
+router.get('/users/all', UsersController.users_list);
 
 module.exports = router;
