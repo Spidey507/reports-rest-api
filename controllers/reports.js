@@ -4,7 +4,7 @@ const { pool } = require('../config')
 
 var controller = {
   all: (req, res) => {
-    pool.query('select * from reports join employees on reports.employee_id = employees.id;', (error, results) => {
+    pool.query('select reports.id, reports.concepto, employees.nombre, employees.departamento, employees.supervisor from reports join employees on reports.employee_id = employees.id;', (error, results) => {
       if (error) {
         console.log(error)
         res.status(500).send({
