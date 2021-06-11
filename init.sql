@@ -22,14 +22,14 @@ CREATE TABLE reports (
 
 CREATE TABLE transaction_records (
   ID SERIAL PRIMARY KEY,
-  transaction_record_id INT,
+  report_id INT,
   fecha VARCHAR(255),
   cuenta VARCHAR(255),
   descripcion VARCHAR(255),
   total VARCHAR(255),
-  CONSTRAINT fk_transaction_record_id
-      FOREIGN KEY(transaction_record_id)
-	  REFERENCES transaction_records(id)
+  CONSTRAINT fk_report_id
+      FOREIGN KEY(report_id)
+	  REFERENCES reports(id)
 	  ON DELETE CASCADE
 );
 
@@ -44,8 +44,8 @@ VALUES  ('Miguel Lezcano', 'Junior developer', 'desarrollo', 'Luis Lopez');
 INSERT INTO reports (employee_id, concepto, fecha_desde, fecha_hasta, aprobado_por, firma)
 VALUES  (1, 'Compras varias', '31/12/1998','31/12/2050', 'Luis Lopez', 'Luis Lopez');
 
-INSERT INTO transaction_records (transaction_record_id, fecha, cuenta, descripcion, total)
+INSERT INTO transaction_records (report_id, fecha, cuenta, descripcion, total)
 VALUES  (1, '10/6/2021', '123123', 'Gasto del mes', 600.00);
 
-INSERT INTO transaction_records (transaction_record_id, fecha, cuenta, descripcion, total)
+INSERT INTO transaction_records (report_id, fecha, cuenta, descripcion, total)
 VALUES  (1, '11/6/2021', '123123', 'Gasto del mes 2', 1600.00);

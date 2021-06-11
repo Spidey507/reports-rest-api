@@ -10,5 +10,6 @@ router.get('/employees/all', UsersController.users_list);
 router.get('/employees/:id', UsersController.find);
 router.get('/reports/all', ReportsController.all);
 router.get('/reports/:id', ReportsController.find);
+router.post('/reports', ReportsController.create);
 
 module.exports = router;
