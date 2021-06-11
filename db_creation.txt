@@ -2,7 +2,7 @@ psql postgres
 
 CREATE ROLE api_dev_user WITH LOGIN PASSWORD '12345';
 
-ALTER ROLE api_user CREATEDB;
+ALTER ROLE api_dev_user CREATEDB;
 
 \q
 

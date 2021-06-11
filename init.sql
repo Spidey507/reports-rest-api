@@ -44,6 +44,10 @@ VALUES  ('Miguel Lezcano', 'Junior developer', 'desarrollo', 'Luis Lopez');
 INSERT INTO reports (employee_id, concepto, fecha_desde, fecha_hasta, aprobado_por, firma)
 VALUES  (1, 'Compras varias', '31/12/1998','31/12/2050', 'Luis Lopez', 'Luis Lopez');
 
+INSERT INTO reports (employee_id, concepto, fecha_desde, fecha_hasta, aprobado_por, firma)
+VALUES  (2, '4 monsters', '10/6/2021','10/6/2021', 'yo mero', 'yo mero');
+
+
 INSERT INTO transaction_records (report_id, fecha, cuenta, descripcion, total)
 VALUES  (1, '10/6/2021', '123123', 'Gasto del mes', 600.00);
 
