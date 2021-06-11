@@ -6,7 +6,7 @@ var controller = {
   all: (req, res) => {
     pool.query('select * from reports join employees on reports.employee_id = employees.id;', (error, results) => {
       if (error) {
-        //throw error
+        console.log(error)
         res.status(500).send({
           message: 'Ya fue hubo un error',
           error: error
@@ -26,6 +26,7 @@ var controller = {
       });
     }
     let reports_response = await (pool.query('SELECT * FROM reports where id = $1', [report_id])).catch((err) => {
+      console.log(err)
       return res.status(500).send({
         status: 'error',
         message: 'Error con la peticion en la base de datos.',
@@ -33,6 +34,7 @@ var controller = {
       });
     })
     if (reports_response.rowCount == 0) {
+      console.log(reports_response)
       return res.status(404).send({
         status: 'error',
         message: 'Reporte no existe.'
@@ -41,6 +43,7 @@ var controller = {
     let report = reports_response.rows[0]
 
     let employee_response = await (pool.query('SELECT * FROM employees where id = $1', [report.employee_id])).catch((err) => {
+      console.log(err)
       return res.status(500).send({
         status: 'error',
         message: 'Error con la peticion en la base de datos.',
@@ -50,8 +53,10 @@ var controller = {
     let employee = employee_response.rows[0]
     report.employee = employee
 
-    let transactions_response = await (pool.query('SELECT * FROM transaction_records where transaction_record_id = $1', [report.id])).catch((err) => {
+    let transactions_response = await (pool.query('SELECT * FROM transaction_records where report_id = $1;', [report.id])).catch((err) => {
+      console.log(err)
       return res.status(500).send({
+        report_id: report.id,
         status: 'error',
         message: 'Error con la peticion en la base de datos.',
         error: err
@@ -66,11 +71,10 @@ var controller = {
     return res.status(200).json(report);
   },
   create: async (req, res) => {
-    // console.log(req)
     const params = req.body;
-    // console.log(params)
     let employee_params = params.employee
-    let employee_response = await (pool.query("SELECT id FROM employees where nombre ilike $1;", [ employee_params.nombre])).catch((err) => {
+    let employee_response = await (pool.query("SELECT id FROM employees where nombre ilike $1;", [employee_params.nombre])).catch((err) => {
+      console.log(err)
       return res.status(500).send({
         status: 'error',
         message: 'Error con la peticion en la base de datos.',
