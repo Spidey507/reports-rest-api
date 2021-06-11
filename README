@@ -1,0 +1,2 @@
+Utilizar comandos del archivo db_creation para la creación de la base de datos en postgres.
+utilizar las consultas del archivo init.sql para la creacion de tablas e inserción de data de prueba en las tablas de la base de datos.
