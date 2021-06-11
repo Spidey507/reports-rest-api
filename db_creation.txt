@@ -1,0 +1,13 @@
+psql postgres
+
+CREATE ROLE api_dev_user WITH LOGIN PASSWORD '12345';
+
+ALTER ROLE api_user CREATEDB;
+
+\q
+
+psql -d postgres -U api_dev_user
+
+CREATE DATABASE reports_api;
+
+\c reports_api
